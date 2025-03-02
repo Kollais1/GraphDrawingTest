@@ -7,7 +7,7 @@
         xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF" 
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="800">
+        Title="MainWindow" Height="900" Width="1200">
     <Window.DataContext>
         <local:ViewModel/>
     </Window.DataContext>
@@ -26,16 +26,16 @@
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal">
             <Button Content="СТАРТ" Margin="0,0,10,0" Padding="5" Command="{Binding Path=StartDrawingCommand}"/>
             <Button Content="СТОП" Margin="0,0,10,0" Padding="5" Command="{Binding Path=StopDrawingCommand}"/>
-            <!--<Slider x:Name="zoom" MinWidth="200" Margin="0,0,10,0" 
-                    Value="0" Minimum="0" Maximum="100" IsSnapToTickEnabled="True"
-                    TickPlacement="BottomRight" TickFrequency="25">
+            <Slider x:Name="zoom" MinWidth="200" Margin="0,0,10,0" 
+                    Value="0" Minimum="0" Maximum="4" IsSnapToTickEnabled="True"
+                    TickPlacement="BottomRight" TickFrequency="1">
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="ValueChanged" SourceObject="{Binding ElementName=zoom}">
                         <b:InvokeCommandAction Command="{Binding Path=ZoomChangedCommand}" PassEventArgsToCommand="True"/>
                     </b:EventTrigger>
                 </b:Interaction.Triggers>
             </Slider>
-            <Label Content="Zoom"/>-->
+            <Label Content="Zoom"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" Margin="0,30,0,0">
@@ -70,14 +70,14 @@
             </Grid>
         </StackPanel>
 
-        <Image Grid.Row="1" Source="{Binding Path=YAxisValueLabels}"/>
+        <Image Grid.Row="1" Grid.Column="0" Source="{Binding Path=YAxisValueLabels}" MinWidth="{Binding Path=YAxisGraphWidth}" Stretch="None"/>
         <!-- spectrogram-->
-        <Image Grid.Row="1" Grid.Column="1" Source="{Binding Path=Spectrum}"/>
+        <Image Grid.Row="1" Grid.Column="1" Source="{Binding Path=Spectrum}" Stretch="None"/>
 
-        <StackPanel Grid.Row="2" Grid.Column="1">
-            <Image Source="{Binding Path=XAxisValueLabels}" MinHeight="30"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Top">
+            <Image Source="{Binding Path=XAxisValueLabels}" MinHeight="{Binding Path=XAxisGraphHeight}" VerticalAlignment="Top" Stretch="None"/>
             <!-- waterfall -->
-            <Image Source="{Binding Path=Waterfall}" VerticalAlignment="Top"/>
+            <Image Source="{Binding Path=Waterfall}" Stretch="None"/>
         </StackPanel>
 
     </Grid>

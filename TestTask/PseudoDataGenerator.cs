@@ -1,9 +1,4 @@
-﻿using SkiaSharp;
-using System.Diagnostics;
-using System.Numerics;
-using System.Xml.Schema;
-
-namespace TestTask
+﻿namespace TestTask
 {
     static class PseudoDataGenerator
     {
@@ -14,6 +9,7 @@ namespace TestTask
         public static float FrequencyMaxValue = 110;
         public static float FrequencyMinValue = 90;
         public static float FrequencyRange = Math.Abs(FrequencyMaxValue - FrequencyMinValue);
+        public static float FrequencyRangeAbs = Math.Abs(FrequencyMaxValueAbs - FrequencyMinValueAbs);
         public static float MagnitudeRange = Math.Abs(MagnitudeMaxValue - MagnitudeMinValue);
         private static Random _random = new();
         private static float _noiseLevelPercent = 0.1F;
@@ -29,7 +25,7 @@ namespace TestTask
         {
             return new PseudoData(
                 SimulateSignal(i, max),
-                FrequencyMinValue + i * FrequencyRange / max);
+                FrequencyMinValueAbs + i * FrequencyRangeAbs / max);
         }
 
         public static float GetRandomNumberInRange(Random random, float minNumber, float maxNumber)
@@ -51,7 +47,7 @@ namespace TestTask
             //then add random noise
 
             float index = (float) i / max;
-            if (index < 0.4 || index > 0.6)
+            if (index < 0.399 || index > 0.6)
                 return MagnitudeMinValue + GetRandomNumberInRange(_random, 0, MagnitudeRange) * _noiseLevelPercent;
 
             else if (index < 0.45 || index > 0.55)

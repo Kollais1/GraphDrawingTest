@@ -1,6 +1,4 @@
-﻿using SkiaSharp.Views.Desktop;
-using SkiaSharp;
-using System.Windows;
+﻿using System.Windows;
 namespace TestTask;
 
 
